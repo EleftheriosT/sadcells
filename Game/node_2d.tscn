@@ -1,20 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://hj1jvse4jtn3"]
+[gd_scene load_steps=8 format=3 uid="uid://hj1jvse4jtn3"]
 
-[ext_resource type="Texture2D" uid="uid://itx7jcgnq0ue" path="res://assets/pixel_perfect_hex_64x64.png" id="1_dvha3"]
+[ext_resource type="Texture2D" uid="uid://c4bs4dmyrdmq" path="res://assets/pixel_perfect_hex_64x64.png" id="1_dvha3"]
+[ext_resource type="Script" uid="uid://rem70trybp3a" path="res://Game/game_control.gd" id="1_lqx5w"]
+[ext_resource type="Script" uid="uid://cowfncfxmclnl" path="res://Game/tile_map.gd" id="2_uvl0m"]
+[ext_resource type="PackedScene" uid="uid://f3bbsya4v6cq" path="res://UI.tscn" id="3_lan3h"]
+[ext_resource type="PackedScene" uid="uid://ccse4uek4kqem" path="res://Game/enemies/Magedude.tscn" id="5_lqx5w"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhmyy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lan3h"]
 texture = ExtResource("1_dvha3")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_wjtvv"]
 tile_shape = 3
+tile_layout = 1
 tile_size = Vector2i(64, 64)
-sources/1 = SubResource("TileSetAtlasSource_hhmyy")
+sources/2 = SubResource("TileSetAtlasSource_lan3h")
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+
+[node name="GameControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lqx5w")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_wjtvv")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, 1, 1, 0, 0, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0, 65535, 1, 0, -2, 1, 0, -65537, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65538, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, 131070, 1, 0, 65534, 1, 0, -3, 1, 0, -65538, 1, 0, -131074, 1, 0)
+layer_0/tile_data = PackedInt32Array(65535, 2, 0, 0, 2, 0, -65536, 2, 0, -1, 2, 0, 65534, 2, 0, -2, 2, 0, 65533, 2, 0, 131071, 2, 0, 131070, 2, 0, 65536, 2, 0, 65537, 2, 0, 1, 2, 0, -65535, 2, 0, -3, 2, 0, 65532, 2, 0, 131069, 2, 0, -65534, 2, 0, 65538, 2, 0, 2, 2, 0, -262142, 2, 0, -196605, 2, 0, -131070, 2, 0, -262141, 2, 0, -131069, 2, 0, -65533, 2, 0, 3, 2, 0, 65539, 2, 0, 131074, 2, 0, 131073, 2, 0, 131072, 2, 0, 196607, 2, 0, 196606, 2, 0, 196605, 2, 0, 196604, 2, 0, 196603, 2, 0, 131068, 2, 0, 65531, 2, 0, -4, 2, 0, -65541, 2, 0, -196613, 2, 0, -196612, 2, 0, -196611, 2, 0, -196610, 2, 0, -196609, 2, 0, -262144, 2, 0, -262143, 2, 0, -196606, 2, 0, -196607, 2, 0, -196608, 2, 0, -131073, 2, 0, -131074, 2, 0, -131075, 2, 0, -65540, 2, 0, -65539, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 2, 0, -131071, 2, 0, -131076, 2, 0, 131075, 2, 0)
+script = ExtResource("2_uvl0m")
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Player Men" type="Node2D" parent="Characters"]
+position = Vector2(1, 0)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_lan3h")]
+
+[node name="Node" parent="." instance=ExtResource("5_lqx5w")]
+position = Vector2(-256, -75)
