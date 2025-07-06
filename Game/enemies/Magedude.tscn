@@ -13,10 +13,6 @@ height = 68.0
 position = Vector2(2, -32)
 texture = ExtResource("2_bxsrc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -33)
-shape = SubResource("CapsuleShape2D_v4u1c")
-
 [node name="Label" type="Label" parent="."]
 offset_left = -19.0
 offset_top = -91.0
@@ -32,3 +28,9 @@ offset_bottom = 36.0
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_aeuko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -33)
+shape = SubResource("CapsuleShape2D_v4u1c")
+
+[connection signal="selection_toggled" from="Area2D" to="Area2D" method="_on_selection_toggled"]
